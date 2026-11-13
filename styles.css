@@ -9,6 +9,13 @@ h1 {
     margin-bottom: 20px;
 }
 
+
+
+
+
+
+
+
 .big-logo {
     color: #ff2d37;
     font-size: 110px;
@@ -20,6 +27,21 @@ h1 {
     margin-bottom: 20px;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 body {
     background-color: #13151B;
     color: #F5F5F5;
@@ -28,6 +50,10 @@ body {
     min-height: 100vh;
     line-height: 1.5;
 }
+
+
+
+
 
 
 
@@ -49,11 +75,19 @@ header {
 
 
 
+
+
+
+
 main {
     max-width: 900px;
     margin: 0 auto;
     padding: 20px;
 }
+
+
+
+
 
 
 
@@ -71,6 +105,10 @@ main {
 
 
 
+
+
+
+
 .habit-card {
     background-color: #13151B;
     padding: 15px;
@@ -79,6 +117,8 @@ main {
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
+
+
 
 
 h2 {
@@ -92,6 +132,10 @@ h2 {
 
 
 
+
+
+
+
 h3 {
     font-size: 15px;
     color: #AEB0B8;
@@ -99,6 +143,10 @@ h3 {
     margin: 0 0 18px 0;
     font-weight: 400;
 }
+
+
+
+
 
 
 
@@ -120,9 +168,17 @@ button {
 
 
 
+
+
+
+
 button:hover {
     transform: translateY(-3px);
 }
+
+
+
+
 
 
 
@@ -141,6 +197,10 @@ button:hover {
 
 
 
+
+
+
+
 .h4-1 {
     font-size: 18px;
     font-weight: 400;
@@ -150,16 +210,13 @@ button:hover {
 }
 
 
-
-
-/* FEATURES */
-
-
-
-
 .features {
     display: flex;
     justify-content: space-between;
+
+
+
+
 
 
 
@@ -169,8 +226,16 @@ button:hover {
 
 
 
+
+
+
+
     margin-bottom: 100px;
 }
+
+
+
+
 
 
 
@@ -183,8 +248,16 @@ button:hover {
 
 
 
+
+
+
+
 .feature-icon {
     color: #ff3039;
+
+
+
+
 
 
 
@@ -194,7 +267,15 @@ button:hover {
 
 
 
+
+
+
+
     height: 50px;
+
+
+
+
 
 
 
@@ -206,8 +287,16 @@ button:hover {
 
 
 
+
+
+
+
     margin-bottom: 10px;
 }
+
+
+
+
 
 
 
@@ -218,7 +307,15 @@ button:hover {
 
 
 
+
+
+
+
     margin: 0 0 5px 0;
+
+
+
+
 
 
 
@@ -229,8 +326,16 @@ button:hover {
 
 
 
+
+
+
+
 .feature p {
     color: #9699a3;
+
+
+
+
 
 
 
@@ -240,8 +345,16 @@ button:hover {
 
 
 
+
+
+
+
     margin: 0;
 }
+
+
+
+
 
 
 
@@ -255,13 +368,6 @@ button:hover {
 }
 
 
-
-
-/* TRACKER */
-
-
-
-
 .tracker {
     background-color: #191b23;
     border: 1px solid #282a32;
@@ -273,10 +379,18 @@ button:hover {
 
 
 
+
+
+
+
 .tracker-header {
     text-align: center;
     margin-bottom: 25px;
 }
+
+
+
+
 
 
 
@@ -290,8 +404,16 @@ button:hover {
 
 
 
+
+
+
+
 .tracker-header p {
     color: #9699a3;
+
+
+
+
 
 
 
@@ -301,8 +423,16 @@ button:hover {
 
 
 
+
+
+
+
     font-size: 14px;
 }
+
+
+
+
 
 
 
@@ -314,6 +444,10 @@ nav {
     white-space: nowrap;
     gap: 32px;
 }
+
+
+
+
 
 
 
@@ -330,6 +464,10 @@ nav {
 
 
 
+
+
+
+
 .login-register {
     color: #cfcaca;
     font-size: 15px;
@@ -338,6 +476,10 @@ nav {
     font-family: Arial, sans-serif;
     display: inline;
 }
+
+
+
+
 
 
 
@@ -353,6 +495,10 @@ nav {
 
 
 
+
+
+
+
 .form-group input:focus {
     border-color: #ff2d37;
     outline: none;
@@ -361,7 +507,15 @@ nav {
 
 
 
+
+
+
+
 input {
+
+
+
+
 
 
 
@@ -381,10 +535,18 @@ input {
 
 
 
+
+
+
+
 input::placeholder {
     color: red;
     opacity: 1;
 }
+
+
+
+
 
 
 
@@ -399,6 +561,10 @@ input:focus {
 
 
 
+
+
+
+
 username-password-text {
     font-size: 15px;
     color: #AEB0B8;
@@ -406,7 +572,8 @@ username-password-text {
     margin: 0 0 18px 0;
     font-weight: 400;
 }
-/* --- FIXED NAV TAB ACTIVE CONFIGURATION --- */
+
+
 .logo {
     color: #ff2d37;
     font-family: "Bebas Neue", sans-serif;
@@ -417,8 +584,11 @@ username-password-text {
 }
 
 
-/* This targets the navigation links when they are set to active */
+
+
 .login-register.active, .home.active {
     color: #ffffff !important;
     font-weight: 700 !important;
 }
+
+
