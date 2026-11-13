@@ -18,7 +18,8 @@
             </nav>
         </header>
 <style>
-/* ===================== COMPONENT ===================== */
+
+
 .streak {
   --streak-muted: #a39cc8;
   display: flex; flex-direction: column; align-items: center;
@@ -62,6 +63,7 @@
 .streak.is-zero .flame { filter: saturate(.15) brightness(.8); opacity: .55; }
 .streak.is-zero .flame-glow { opacity: .1; }
 
+
 .streak-reveal { display: flex; flex-direction: column; align-items: center; margin-top: 8px; min-height: 104px; }
 .streak-count {
   font-size: 64px; font-weight: 900; line-height: 1.2; height: 1.2em;
@@ -88,16 +90,18 @@
 .streak-rain { position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; }
 .streak-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 
+
 @keyframes streakSway  { 0%,100% { transform: skewX(0deg) scaleY(1); } 25% { transform: skewX(-3deg) scaleY(1.03); } 75% { transform: skewX(3deg) scaleY(.98); } }
 @keyframes streakFlick { 0%,100% { transform: scale(1,1); } 30% { transform: scale(.95,1.09); } 60% { transform: scale(1.04,.94); } }
+
 
 @media (prefers-reduced-motion: reduce) {
   .flame .body, .flame .mid, .flame .core { animation: none; }
 }
-/* =================== END COMPONENT =================== */
 
-/* Page */
+
 * { box-sizing: border-box; }
+
 
 body {
     margin: 0;
@@ -106,6 +110,7 @@ body {
     font-family: "Nunito", system-ui, sans-serif;
     overflow-x: hidden;
 }
+
 
 .page { display: flex; flex-direction: column; align-items: center; gap: 24px; padding: 40px 16px; }
 .complete {
@@ -127,27 +132,34 @@ body {
   <button id="complete" class="complete">Complete</button>
 </main>
 
+
 <script>
+
 
   function getMostRecent12PM() {
   const now = new Date();
   const target = new Date();
 
-  // Set to today at 12:00:00
+
   target.setHours(12, 0, 0, 0);
 
-  // If current time is BEFORE 12:00 PM today,
+
+
+
   // the most recent 12:00 PM milestone was actually YESTERDAY.
   if (now < target) {
     target.setDate(target.getDate() - 1);
   }
 
+
   return target.getTime(); // returns timestamp
 }
+
 
 function tryToExecuteTask() {
   const lastRun = localStorage.getItem('last_executed_time');
   const recent12PM = getMostRecent12PM();
+
 
   // If there's a record, and it happened AFTER the most recent 12:00 PM, block it.
   if (lastRun && parseInt(lastRun) >= recent12PM) {
@@ -155,24 +167,24 @@ function tryToExecuteTask() {
     return false;
   }
 
+
   // --- PLACE YOUR CODE TO RUN HERE ---
   console.log("Action successfully executed!");
-
-
-  // Save the current timestamp as the new last-run execution time
   localStorage.setItem('last_executed_time', Date.now().toString());
   return true;
 }
 
+
 // Example usage: Bind this to a button click or an event trigger
 // tryToExecuteTask();
 
-/* ===================== COMPONENT ===================== */
+
 (function () {
   const TAU = Math.PI * 2;
   const BASE = [3, 7, 14, 30, 50, 100, 150, 200, 365, 500, 750, 1000].map(BigInt);
   const FIRE = ['#ff5a1f', '#ff9f1c', '#ffc93c', '#fff4c2'];
   const FLOWER_COLORS = ['#ffd1e8', '#ffb3c7', '#fff1a8', '#d4c4ff', '#b5f2e3', '#ffffff', '#ffb056'];
+
 
   // Flame shapes (viewBox 0 0 100 120)
   const OUTER = 'M50 116 C24 116 10 96 12 74 C14 54 28 44 30 26 C40 36 42 46 40 56 C48 44 54 26 50 4 C70 18 88 42 88 72 C88 98 74 116 50 116 Z';
@@ -190,6 +202,7 @@ function tryToExecuteTask() {
   ];
   const CRACK_START = CRACKS.map(d => d.match(/M(\d+) (\d+)/).slice(1).map(Number));
 
+
   const fmt = (n) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   const len = (n) => n.toString().length;
   const wait = (ms) => new Promise(r => setTimeout(r, ms));
@@ -202,7 +215,7 @@ function tryToExecuteTask() {
     const step = 10n ** BigInt(len(n) - 1); return (n / step + 1n) * step;
   }
 
-  /* ---------- falling flowers (one full-screen layer shared by every streak) ---------- */
+
   const Rain = (() => {
     let c, ctx, W = 0, Hh = 0, items = [], raf = 0, last = 0;
     function ensure() {
@@ -265,6 +278,7 @@ function tryToExecuteTask() {
     return { spawn };
   })();
 
+
   let uid = 0;
   function create(root, opts = {}) {
     const id = 'streakify' + (++uid);
@@ -307,6 +321,7 @@ function tryToExecuteTask() {
       <div class="streak-toast"></div>
       <span class="streak-sr" aria-live="polite"></span>`;
 
+
     const $ = (s) => root.querySelector(s);
     const canvas = $('.streak-fx'), wave = $('.streak-wave'), flash = $('.streak-flash');
     const glow = $('.flame-glow'), shake = $('.flame-shake'), wrap = $('.flame-wrap'), flameSvg = $('.flame');
@@ -314,7 +329,7 @@ function tryToExecuteTask() {
     const crackGlows = [...root.querySelectorAll('.crack-glow')];
     const crackLines = [...root.querySelectorAll('.crack-line')];
 
-    /* ---------- state + number ---------- */
+
     function setState(s) {
       root.classList.toggle('is-hidden', s === 'hidden');
       root.classList.toggle('is-playing', s === 'playing');
@@ -337,7 +352,7 @@ function tryToExecuteTask() {
       }
     }
 
-    /* ---------- sparks, embers and flame shards ---------- */
+
     const S = 640, fx = canvas.getContext('2d');
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     canvas.width = S * dpr; canvas.height = S * dpr; fx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -388,6 +403,7 @@ function tryToExecuteTask() {
       raf = parts.length ? requestAnimationFrame(tick) : 0;
     }
 
+
     function jitter(n, from, to, rotScale = .6) { // random shake keyframes, growing from → to px
       const f = [{ transform: 'translate(0px,0px) rotate(0deg)' }];
       for (let i = 1; i <= n; i++) {
@@ -410,13 +426,14 @@ function tryToExecuteTask() {
       ], { duration: 2800, easing: 'ease-out' });
     }
 
-    /* ---------- crack → spin → drop → explode → flowers → reveal ---------- */
+
     const DROP = 52; // px the flame falls before it explodes
     async function sequence(next, milestone) {
       const live = [];
       setState('playing');                                         // number hidden
       root.classList.remove('is-zero');                            // flame lights up
       await wait(250);
+
 
       // 1. crack
       const crackDur = 1800, n = CRACKS.length;
@@ -436,6 +453,7 @@ function tryToExecuteTask() {
       }
       tremble.cancel();
 
+
       // 2. spin a few times, hang, then drop
       const spinDur = 1650;
       live.push(wrap.animate([
@@ -452,6 +470,7 @@ function tryToExecuteTask() {
       await wait(spinDur * .78);
       clearInterval(trail);
       await wait(spinDur * .22);
+
 
       // 3. impact → explode
       const c = mapPoint(50, 70);
@@ -472,14 +491,17 @@ function tryToExecuteTask() {
       burst(c.x, c.y, milestone ? 140 : 100, FIRE.concat('#ffffff'), { power: 2.2, kinds: ['shard', 'shard', 'spark', 'dot'] });
       await wait(250);
 
+
       // 4. flowers fall
       Rain.spawn(milestone ? 200 : 110);
       await wait(550);
+
 
       // 5. reveal the number
       renderCount(next, true);
       setState('shown');
       if (milestone) showToast(`🎉 ${fmt(prevMilestone(next))}-day milestone!`);
+
 
       // 6. flame pops back
       live.forEach(a => a.cancel());
@@ -492,6 +514,7 @@ function tryToExecuteTask() {
       await grow.finished.catch(() => {});
     }
 
+
     async function step(next, prev, o) {
       if (next < prev || reduce || o.animate === false) {
         renderCount(next, false);
@@ -500,6 +523,7 @@ function tryToExecuteTask() {
       }
       return sequence(next, nextMilestone(prev) <= next);
     }
+
 
     let value = 0n, target = 0n, running = null, lastOpts = {};
     function drive(o) {
@@ -514,11 +538,13 @@ function tryToExecuteTask() {
       return running;
     }
 
+
     // initial paint
     value = target = opts.value != null ? BigInt(opts.value) : 0n;
     if (value < 0n) value = target = 0n;
     renderCount(value, false);
     setState(opts.hidden === false ? 'shown' : 'hidden');
+
 
     return {
       get value() { return value; },
@@ -534,33 +560,39 @@ function tryToExecuteTask() {
     };
   }
 
+
   window.Streakify = { create };
 })();
-/* =================== END COMPONENT =================== */
 
-/* Page wiring */
 
-/* Page wiring */
+
+
 const streak = Streakify.create(
     document.getElementById('streak'),
     { value: localStorage.getItem('streak_count') || 0 }
 );
 
+
 const completeBtn = document.getElementById('complete');
+
 
 // Find the most recent midday
 function getMostRecent12PM() {
     const now = new Date();
     const target = new Date();
 
+
     target.setHours(12, 0, 0, 0);
+
 
     if (now < target) {
         target.setDate(target.getDate() - 1);
     }
 
+
     return target.getTime();
 }
+
 
 // Check whether today's completion has already been used
 function updateButton() {
@@ -568,10 +600,13 @@ function updateButton() {
         localStorage.getItem('last_executed_time') || 0
     );
 
+
     const resetTime = getMostRecent12PM();
     const alreadyCompleted = lastRun >= resetTime;
 
+
     completeBtn.disabled = alreadyCompleted;
+
 
     if (alreadyCompleted) {
         completeBtn.textContent = 'Completed Today ✓';
@@ -580,18 +615,22 @@ function updateButton() {
     }
 }
 
+
 // Handle the Complete button
 completeBtn.onclick = async () => {
     if (streak.busy) return;
+
 
     const lastRun = Number(
         localStorage.getItem('last_executed_time') || 0
     );
 
+
     if (lastRun >= getMostRecent12PM()) {
         updateButton();
         return;
     }
+
 
     // Save immediately to prevent another completion
     localStorage.setItem(
@@ -599,11 +638,14 @@ completeBtn.onclick = async () => {
         Date.now().toString()
     );
 
+
     completeBtn.disabled = true;
     completeBtn.textContent = 'Completed Today ✓';
 
+
     try {
         await streak.increment();
+
 
         localStorage.setItem(
             'streak_count',
@@ -614,11 +656,14 @@ completeBtn.onclick = async () => {
     }
 };
 
+
 // Set the correct button state when the page opens
 updateButton();
 
+
 // Recheck periodically so the button unlocks after midday
 setInterval(updateButton, 10000);
+
 
 </script>
 </body>
