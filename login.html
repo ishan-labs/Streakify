@@ -4,16 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
 
+
     <title>Login - Streakify</title>
 </head>
+
 
 <body>
     <header>
         <a href="index.html" class="logo">STREAKIFY</a>
+
 
         <nav>
             <a href="index.html" class="login-register">Home</a>
@@ -23,11 +27,14 @@
         </nav>
     </header>
 
+
     <main>
         <form class="habits login-box" id="loginForm">
 
+
             <h2 id="greeting">Welcome Back</h2>
             <h3>Enter your details below to continue tracking</h3>
+
 
             <div class="form-group">
                 <username-password-text>Username</username-password-text>
@@ -35,7 +42,9 @@
                 <input type="text" id="username" autocomplete="username"
             </div>
 
+
             <br>
+
 
             <div class="form-group">
                 <username-password-text><br>Password</username-password-text>
@@ -44,9 +53,12 @@
                        autocomplete="current-password"
             </div>
 
+
             <p id="message"></p>
 
+
             <button type="submit">Log In</button>
+
 
             <h3>Don't have an account?
                 <a href="register.html">Register here</a>
@@ -54,15 +66,18 @@
         </form>
     </main>
 
+
     <script>
         const loginForm = document.getElementById('loginForm');
         const usernameInput = document.getElementById('username');
         const greetingText = document.getElementById('greeting');
         const message = document.getElementById('message');
 
+
         // Update the greeting when the user types.
         usernameInput.addEventListener('input', () => {
             const username = usernameInput.value.trim();
+
 
             if (username.length > 0) {
                 greetingText.textContent = `Welcome Back, ${username}!`;
@@ -71,26 +86,32 @@
             }
         });
 
+
         // Check the saved demo username.
         loginForm.addEventListener('submit', function(event) {
             event.preventDefault();
 
+
             const enteredUsername = usernameInput.value.trim();
             const savedUsername = localStorage.getItem('username');
+
 
             if (!savedUsername) {
                 message.textContent = 'No account found. Please register first.';
                 return;
             }
 
+
             if (enteredUsername !== savedUsername) {
                 message.textContent = 'Account not found. Please try again.';
                 return;
             }
 
+
             // Save the name for the habits page.
             const savedName = localStorage.getItem('name');
             sessionStorage.setItem('loggedInName', savedName || enteredUsername);
+
 
             // Open the habit tracker.
             window.location.href = 'habits.html';
